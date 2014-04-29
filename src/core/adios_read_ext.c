@@ -14,7 +14,7 @@
 const data_view_t LOGICAL_DATA_VIEW = &LOGICAL_DATA_VIEW;
 const data_view_t PHYSICAL_DATA_VIEW = &PHYSICAL_DATA_VIEW;
 
-extern const adios_transform_type_t NO_TRANSFORM = adios_transform_none;
+const adios_transform_type_t NO_TRANSFORM = adios_transform_none;
 
 // Sets the "data view" for this ADIOS file, which determines how ADIOS presents variables through
 // adios_inq_var*, and how reads are evaluated in adios_schedule_reads/adios_check_reads calls.
@@ -52,7 +52,7 @@ ADIOS_VARTRANSFORM *  adios_inq_var_transform(const ADIOS_FILE *fp, const ADIOS_
 	return vartransform;
 }
 
-#define MYFREE(p) {if (p){ free((void*)(p)); (p) = NULL; }}
+#define MYFREE(p) {if (p){ free((void*)(p)); *(void**)&(void*)(p) = NULL; }}
 void adios_free_var_transform(ADIOS_VARTRANSFORM *vartransform) {
 	if (vartransform->transform_metadatas) {
 		if (vartransform->should_free_transform_metadata) {
