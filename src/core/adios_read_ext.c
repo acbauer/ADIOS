@@ -54,7 +54,7 @@ ADIOS_VARTRANSFORM *  adios_inq_var_transform(const ADIOS_FILE *fp, const ADIOS_
 	return vartransform;
 }
 
-#define MYFREE(p) {if (p){ free((void*)(p)); *(void**)&p = NULL; }}
+#define MYFREE(p) {if (p){ free((void*)(p)); (p) = NULL; }}
 void adios_free_var_transform(ADIOS_VARTRANSFORM *vartransform) {
 	if (vartransform->transform_metadatas) {
 		if (vartransform->should_free_transform_metadata) {
