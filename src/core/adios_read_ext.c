@@ -7,8 +7,8 @@
 
 #include <stdlib.h>
 
+#include "public/adios_read_ext.h"
 #include "core/transforms/adios_transforms_common.h"
-#include "adios_read_ext.h"
 
 // Ensure unique pointer-based values for each one
 const data_view_t LOGICAL_DATA_VIEW = &LOGICAL_DATA_VIEW;
