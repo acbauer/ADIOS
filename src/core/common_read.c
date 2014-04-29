@@ -198,6 +198,9 @@ ADIOS_FILE * common_read_open (const char * fname,
     // NCSU ALACRITY-ADIOS - Added allocation of infocache for more efficient read processing with transforms
     internals->infocache = adios_transform_infocache_new();
 
+    // NCSU ALACRITY-ADIOS - Added a data view field, which by default starts in logical view mode
+    internals->data_view = LOGICAL_DATA_VIEW;
+
     fp = adios_read_hooks[internals->method].adios_open_fn (fname, comm, lock_mode, timeout_sec);
 
     // save the method and group information in fp->internal_data
@@ -241,6 +244,9 @@ ADIOS_FILE * common_read_open_file (const char * fname,
 
     // NCSU ALACRITY-ADIOS - Added allocation of infocache for more efficient read processing with transforms
     internals->infocache = adios_transform_infocache_new();
+
+    // NCSU ALACRITY-ADIOS - Added a data view field, which by default starts in logical view mode
+    internals->data_view = LOGICAL_DATA_VIEW;
 
     fp = adios_read_hooks[internals->method].adios_open_file_fn (fname, comm);
 
