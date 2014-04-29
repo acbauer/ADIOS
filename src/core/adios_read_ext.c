@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 #include "public/adios_read_ext.h"
+#include "core/common_read.h"
 #include "core/transforms/adios_transforms_common.h"
 #include "core/transforms/adios_transforms_transinfo.h"
 
