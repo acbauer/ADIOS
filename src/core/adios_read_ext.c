@@ -36,8 +36,8 @@ ADIOS_VARTRANSFORM *  adios_inq_var_transform(const ADIOS_FILE *fp, const ADIOS_
 
 	*vartransform = (ADIOS_VARTRANSFORM){
 		.transform_type = info->transform_type,
-				.should_free_transform_metadata = info->should_free_transform_metadata,
-				.transform_metadatas = info->transform_metadatas
+		.should_free_transform_metadata = info->should_free_transform_metadata,
+		.transform_metadatas = info->transform_metadatas
 	};
 
 	//	vartransform->transform_type = info->transform_type;
