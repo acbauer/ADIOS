@@ -85,6 +85,7 @@ transforms_read_SOURCES = $(transforms_read_HDRS) \
                           core/transforms/adios_transforms_datablock.c \
                           core/transforms/adios_patchdata.c \
                           core/adios_selection_util.c \
+                          core/adios_read_ext.c \
                           $(transforms_read_method_SOURCES)
 
 transforms_write_SOURCES = $(transforms_write_HDRS) \
