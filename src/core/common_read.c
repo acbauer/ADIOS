@@ -57,6 +57,9 @@ struct common_read_internals_struct {
 
     // NCSU ALACRITY-ADIOS - Cache of VARINFOs and TRANSINFOs
     adios_transform_infocache *infocache;
+
+    // NCSU ALACRITY-ADIOS - The view mode of this file
+    data_view_t data_view;
 };
 
 // NCSU ALACRITY-ADIOS - Forward declaration/function prototypes

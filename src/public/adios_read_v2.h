@@ -18,7 +18,6 @@ extern "C" {
 #include "adios_mpi.h"
 #include "adios_types.h"
 #include "adios_selection.h"
-#include "adios_read_ext.h"
 
 #include <stdint.h>
 
@@ -46,8 +45,6 @@ typedef struct {
 
         /* Internals */
         void     * internal_data;   /* Data for internal use                                          */
-
-        data_view_t data_view;
 } ADIOS_FILE;
 
 typedef struct {
@@ -83,7 +80,6 @@ typedef struct {
         } *histogram;
 
 } ADIOS_VARSTAT;
-
 
 typedef struct {
     uint64_t * start;      /* offset start point in global array ('ndim' elements)         */
