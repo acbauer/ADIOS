@@ -18,7 +18,7 @@
 
 // An opaque type defining a particular view of the data.
 // Currently, there are only two possible values: LOGICAL_DATA_VIEW and PHYSICAL_DATA_VIEW
-typedef void* data_view_t;
+typedef const void* data_view_t;
 
 // LOGICAL_DATA_VIEW: the default, ADIOS presents the same view of the data as it was written to the
 //   file (e.g., if processes wrote to a 3D global array of doubles, the user API will present a 3D global

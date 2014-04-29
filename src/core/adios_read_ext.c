@@ -9,6 +9,7 @@
 
 #include "public/adios_read_ext.h"
 #include "core/transforms/adios_transforms_common.h"
+#include "core/transforms/adios_transforms_transinfo.h"
 
 // Ensure unique pointer-based values for each one
 const data_view_t LOGICAL_DATA_VIEW = &LOGICAL_DATA_VIEW;
@@ -52,7 +53,7 @@ ADIOS_VARTRANSFORM *  adios_inq_var_transform(const ADIOS_FILE *fp, const ADIOS_
 	return vartransform;
 }
 
-#define MYFREE(p) {if (p){ free((void*)(p)); *(void**)&(void*)(p) = NULL; }}
+#define MYFREE(p) {if (p){ free((void*)(p)); *(void**)&p = NULL; }}
 void adios_free_var_transform(ADIOS_VARTRANSFORM *vartransform) {
 	if (vartransform->transform_metadatas) {
 		if (vartransform->should_free_transform_metadata) {
