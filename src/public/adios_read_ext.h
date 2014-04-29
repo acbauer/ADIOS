@@ -7,10 +7,14 @@
 #ifndef ADIOS_READ_EXT_H_
 #define ADIOS_READ_EXT_H_
 
+#ifdef ADIOS_USE_READ_API_1
+#  error "Extended ADIOS Read API is not available in Read API v1"
+#endif
+
 #include <stdint.h>
 
-#include "adios_read.h"
-#include "adios_selection.h"
+#include "public/adios_read_v2.h"
+#include "public/adios_selection.h"
 
 // An opaque type defining a particular view of the data.
 // Currently, there are only two possible values: LOGICAL_DATA_VIEW and PHYSICAL_DATA_VIEW
