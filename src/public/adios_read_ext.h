@@ -33,18 +33,21 @@ typedef int adios_transform_type_t;
 
 extern const adios_transform_type_t NO_TRANSFORM;
 
+typedef struct {
+	void *content;
+	uint64_t length;
+} ADIOS_TRANSFORM_META;
+
 // A transform information structure describing how a particular variable has been transformed
 typedef struct {
 	const adios_transform_type_t transform_type; /* The data transform applied to this variable */
 	const int should_free_transform_metadata; // Used internally for free
 
-	const struct {
-		const void *content; /* The transform plugin-specific metadata buffer for a given varblock */
-		uint64_t length;     /* The number of bytes in the above "content" field */
-	} *transform_metadatas; /* An array of transform plugin-specific metadata buffers, one for each
-	                           varblock in this file (number of varblocks == ADIOS_VARINFO.sum_nblocks).
-	                           Only needed by advanced applications requiring direct manipulation
-	                           of transformed data. */
+	/* An array of transform plugin-specific metadata buffers, one for each
+       varblock in this file (number of varblocks == ADIOS_VARINFO.sum_nblocks).
+	   Only needed by advanced applications requiring direct manipulation
+	   of transformed data. */
+	const ADIOS_TRANSFORM_META *transform_metadatas;
 } ADIOS_VARTRANSFORM;
 
 // Sets the "data view" for this ADIOS file, which determines how ADIOS presents variables through
