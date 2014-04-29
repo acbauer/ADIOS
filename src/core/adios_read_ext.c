@@ -5,6 +5,8 @@
  *      Author: xczou
  */
 
+#include <stdlib.h>
+
 #include "adios_read_ext.h"
 
 // Sets the "data view" for this ADIOS file, which determines how ADIOS presents variables through
@@ -31,6 +33,10 @@ ADIOS_VARTRANSFORM *  adios_inq_var_transform(const ADIOS_FILE *fp, const ADIOS_
 
 	transform->transform_metadatas = info->transform_metadatas;
 	return transform;
+
+}
+
+void adios_free_var_transform(ADIOS_VARTRANSFORM *vartransform) {
 
 }
 
