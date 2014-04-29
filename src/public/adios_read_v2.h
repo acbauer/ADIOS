@@ -18,6 +18,7 @@ extern "C" {
 #include "adios_mpi.h"
 #include "adios_types.h"
 #include "adios_selection.h"
+#include "adios_read_ext.h"
 
 #include <stdint.h>
 
@@ -46,9 +47,7 @@ typedef struct {
         /* Internals */
         void     * internal_data;   /* Data for internal use                                          */
 
-        int transform_layer_enabled ; /* toggle for dis/enabling seeing the transform data            */
-                                      /* 1 => disable seeing the transform data                       */
-        							  /* 0 => enable seeing the transform data                       */
+        data_view_t data_view;
 } ADIOS_FILE;
 
 typedef struct {
