@@ -142,7 +142,7 @@ int main(int argc, char ** argv) {
 			if (query.queryType == REGION_RETRIEVAL_INDEX_ONLY_QUERY_TYPE) {
 				// No data, no candidate checks, just return the results as-is
 				resultData = NULL;
-				populateQueryResult(*result, resultData, index, resultCount);
+				populateQueryResult(&result, resultData, index, resultCount);
 				printf("Returned RID number : %ul \n", result.resultCount);
 //				populateQueryResult(&result, resultData, index, resultCount);
 			} else {
