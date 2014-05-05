@@ -22,6 +22,12 @@
  */
 
 int main(int argc, char ** argv) {
+
+	if (argc < 5 ){
+		printf("input correct usage: ./adios_query [bp file path] [variable] [low boundary] [high boundary]\n");
+		return 1;
+	}
+
 	char filename[256];
 	char varName[256];
 	int rank, size, i, j;
@@ -36,9 +42,13 @@ int main(int argc, char ** argv) {
 
 	adios_read_init_method(method, comm, "verbose=3");
 
-	strcpy(filename, "adios_alac.bp");
+//	strcpy(filename, "adios_alac.bp");
+//	strcpy(varName, "temp");
+	strcpy(filename, argv[1]);
+	strcpy(varName, argv[2]);
 	double lb = 0, hb = 0;
-	strcpy(varName, "temp");
+	lb = atof(argv[3]);
+	hb = atof(argv[4]);
 
 	ADIOS_FILE * f = adios_read_open(filename, method, comm,
 			ADIOS_LOCKMODE_NONE, 0);
@@ -49,7 +59,7 @@ int main(int argc, char ** argv) {
 	ALQueryEngine qe;
 	ALUnivariateQuery query;
 	ALQueryEngineStartUnivariateDoubleQuery(&qe, lb, hb,
-			VALUE_RETRIEVAL_QUERY_TYPE, &query);
+			REGION_RETRIEVAL_INDEX_ONLY_QUERY_TYPE, &query);
 	/*********** doQuery ***************
 	 *
 	 * 1. Open partition  [locate offsets of meta, data, and index for the partition]
@@ -66,6 +76,8 @@ int main(int argc, char ** argv) {
 
 	int totalPG = v->sum_nblocks;
 
+	printf("total PG number: %d", totalPG);
+
 	uint64_t * metaSizes = (uint64_t *) malloc(sizeof(uint64_t) * totalPG);
 	uint64_t * indexSizes = (uint64_t *) malloc(sizeof(uint64_t) * totalPG);
 	uint64_t * dataSizes = (uint64_t *) malloc(sizeof(uint64_t) * totalPG);
@@ -78,6 +90,8 @@ int main(int argc, char ** argv) {
 		metaSizes[i] = threeData[0];
 		indexSizes[i] = threeData[1];
 		dataSizes[i] = threeData[2];
+
+		printf("PG[%d] has meta size[%ul], index size[%ul], and data size[%ul] \n", i, metaSizes[i], indexSizes[i], dataSizes[i]);
 
 		uint64_t metaSize = metaSizes[i];
 
@@ -127,9 +141,12 @@ int main(int argc, char ** argv) {
 				// No data, no candidate checks, just return the results as-is
 				resultData = NULL;
 				populateQueryResult(*result, resultData, index, resultCount);
+				printf("Returned RID number : %ul \n", result.resultCount);
 			} else {
 				// TODO
 			}
+		}else {
+			printf("No results matched query constraint \n");
 		}
 
 	}
