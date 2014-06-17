@@ -735,6 +735,11 @@ void common_read_free_transinfo(const ADIOS_VARINFO *vi, ADIOS_TRANSINFO *ti) {
 }
 #undef MYFREE
 
+adios_transform_infocache * common_read_get_file_infocache(ADIOS_FILE *fp) {
+	struct common_read_internals_struct *internals = (struct common_read_internals_struct *)fp->internal_data;
+	return internals->infocache;
+}
+
 int common_read_schedule_read (const ADIOS_FILE      * fp,
                                const ADIOS_SELECTION * sel,
                                const char            * varname,

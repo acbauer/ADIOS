@@ -13,6 +13,7 @@
 
 #include "public/adios_types.h"
 #include "public/adios_read_v2.h"  /* C API's struct's are used here */
+#include "core/transforms/adios_transforms_read.h" // NCSU ALACRITY-ADIOS
 #include "core/transforms/adios_transforms_transinfo.h" // NCSU ALACRITY-ADIOS
 
 #include <stdint.h>
@@ -51,6 +52,8 @@ int common_read_inq_var_blockinfo (const ADIOS_FILE *fp, ADIOS_VARINFO * varinfo
 int common_read_inq_trans_blockinfo(const ADIOS_FILE *fp, const ADIOS_VARINFO *vi, ADIOS_TRANSINFO * ti); // NCSU ALACRITY-ADIOS
 void common_read_free_varinfo (ADIOS_VARINFO *vp);
 void common_read_free_transinfo(const ADIOS_VARINFO *vi, ADIOS_TRANSINFO *ti); // NCSU ALACRITY-ADIOS
+
+adios_transform_infocache * common_read_get_file_infocache();
 
 int common_read_schedule_read (const ADIOS_FILE      * fp,
                                const ADIOS_SELECTION * sel,
